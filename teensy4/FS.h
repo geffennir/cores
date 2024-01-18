@@ -74,10 +74,10 @@ protected:
 	virtual bool isDirectory() = 0;
 	virtual File openNextFile(uint8_t mode=0) = 0;
 	virtual void rewindDirectory(void) = 0;
-	virtual bool getCreateTime(DateTimeFields &tm) { return false; }
-	virtual bool getModifyTime(DateTimeFields &tm) { return false; }
-	virtual bool setCreateTime(const DateTimeFields &tm) { return false; }
-	virtual bool setModifyTime(const DateTimeFields &tm) { return false; }
+	virtual bool getCreateTime(DateTimeFields &tm __attribute__((unused))) { return false; }
+	virtual bool getModifyTime(DateTimeFields &tm __attribute__((unused))) { return false; }
+	virtual bool setCreateTime(const DateTimeFields &tm __attribute__((unused))) { return false; }
+	virtual bool setModifyTime(const DateTimeFields &tm __attribute__((unused))) { return false; }
 private:
 	friend class File;
 	unsigned int refcount = 0; // number of File instances referencing this FileImpl
@@ -281,10 +281,10 @@ public:
 	virtual bool rmdir(const char *filepath) = 0;
 	virtual uint64_t usedSize() = 0;
 	virtual uint64_t totalSize() = 0;
-	virtual bool format(int type=0, char progressChar=0, Print& pr=Serial) {
-		return false;
-	}
-	virtual bool mediaPresent() {
+    virtual bool format(int type __attribute__((unused)) = 0, char progressChar __attribute__((unused)) = 0, Print &pr __attribute__((unused)) = Serial) {
+        return false;
+    }
+    virtual bool mediaPresent() {
 		return true;
 	}
 	File open(const String &filepath, uint8_t mode = FILE_READ) {

@@ -395,8 +395,8 @@ public:
 		TCD = &tcddata;
 	}
 	DMASetting(const DMASetting &c) {
+        tcddata = c.tcddata;
 		TCD = &tcddata;
-		*this = c;
 	}
 	DMASetting(const DMABaseClass &c) {
 		TCD = &tcddata;
